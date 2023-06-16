@@ -1,0 +1,20 @@
+<select [(ngModel)]="selectedRubroId" (change)="onRubroSelected()">
+  <option *ngFor="let rubro of rubros" [value]="rubro.id">{{rubro.denominacion}}</option>
+</select>
+
+<button (click)="onAdd()">Agregar Articulo</button>
+
+<table>
+  <tr *ngFor="let articulo of articulos">
+    <td>{{articulo.codigo}}</td>
+    <td>{{articulo.denominacion}}</td>
+    <td>{{articulo.precio}}</td>
+    <td>{{articulo.idrubro}}</td>
+    <td>
+      <button (click)="onEdit(articulo)">Editar</button>
+      <button (click)="onDelete(articulo)">Eliminar</button>
+      <button (click)="onView(articulo)">Ver</button>
+    </td>
+  </tr>
+</table>
+

@@ -1,0 +1,20 @@
+<div *ngIf="articulo" class="container">
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-body">
+          <h1 class="card-title">{{articulo.denominacion}}</h1>
+          <p><strong>ID:</strong> {{articulo.id}}</p>
+          <p><strong>Código:</strong> {{articulo.codigo}}</p>
+          <p><strong>Precio:</strong> {{articulo.precio}}</p>
+          <p><strong>ID Rubro:</strong> {{articulo.idrubro}}</p>
+          <p *ngIf="articulo.nuevo"><strong>Nuevo:</strong> {{articulo.nuevo}}</p>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-info w-50" routerLink="/articulos">Volver</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="!articulo">Loading...</div>

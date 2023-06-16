@@ -1,0 +1,32 @@
+<div class="container m-5">
+  <form [formGroup]="articuloForm" (ngSubmit)="onSubmit()">
+    <div *ngIf="articuloForm.controls['id'].value" class="form-group">
+      <label for="id">ID</label>
+      <input id="id" type="text" class="form-control" formControlName="id" readonly>
+    </div>
+    <div class="form-group">
+      <label for="codigo">Código</label>
+      <input id="codigo" type="text" class="form-control" formControlName="codigo">
+      <div *ngIf="showAlert" class="alert alert-danger">
+        Este código ya está asignado a otro artículo.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="denominacion">Denominación</label>
+      <input id="denominacion" type="text" class="form-control" formControlName="denominacion">
+    </div>
+    <div class="form-group">
+      <label for="precio">Precio</label>
+      <input id="precio" type="number" class="form-control" formControlName="precio">
+    </div>
+    <div class="form-group">
+      <label for="idrubro">Rubro</label>
+      <select id="idrubro" class="form-control" formControlName="idrubro">
+        <option *ngFor="let rubro of rubros" [value]="rubro.id">{{ rubro.denominacion }}</option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="showAlert">Guardar</button>
+    <button type="button" class="btn btn-secondary" (click)="onCancel()" style="margin-left: 10px;">Cancelar</button>
+  </form>
+</div>
