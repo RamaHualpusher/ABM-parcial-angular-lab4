@@ -11,6 +11,7 @@ import { Articulo } from 'src/app/models/Articulo';
   styleUrls: ['./articulo-form.component.css']
 })
 export class ArticuloFormComponent implements OnInit {
+  titulo: string = 'Nuevo Articulo';
   articuloForm = new FormGroup({
     id: new FormControl(''),
     codigo: new FormControl(''),
@@ -28,6 +29,7 @@ export class ArticuloFormComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     this.articulosService.getRubros().subscribe(rubros => {
       this.rubros = rubros;
+      this.titulo = id ? 'Editar Articulo' : 'Nuevo Articulo';
     });
 
     if (id) {
@@ -55,8 +57,16 @@ export class ArticuloFormComponent implements OnInit {
 
     if (articulo.codigo !== undefined && articulo.codigo !== null) {
       this.articulosService.getArticulosPorCodigo(articulo.codigo).subscribe(existingArticulos => {
-        const existingArticulo = existingArticulos;
-        if (existingArticulo && existingArticulo.id !== articulo.id) {
+        const existingArticulo = existingArticulos[0]
+        if (existingArticulo && existingArticulo.id !== articulo.id?.toString()) {
+          console.log("Articulo duplicado");
+          console.log("Articulo duplicado: "+ JSON.stringify(existingArticulo));
+          console.log("Articulo enviado: "+ JSON.stringify(articulo));
+          console.log(existingArticulo.id);
+          console.log(articulo.id);
+          console.log(existingArticulo.id !== articulo.id);
+
+
           this.showAlert = true;
           setTimeout(() => this.showAlert = false, 3000);
         } else {

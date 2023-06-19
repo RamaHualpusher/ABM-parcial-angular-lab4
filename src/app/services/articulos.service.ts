@@ -24,9 +24,10 @@ export class ArticulosService {
     return this.http.get<Articulo>(`${this.BASE_URL}/api_articulo/get_articulo.php?id=${id}`);
   }
 
-  getArticulosPorCodigo(codigo: string): Observable<Articulo> {
-    return this.http.get<Articulo>(`${this.BASE_URL}/api_articulo/get_articulos_por_codigo.php?codigo=${codigo}`);
-  }
+  getArticulosPorCodigo(codigo: string): Observable<Articulo[]> {
+    return this.http.get<Articulo[]>(`${this.BASE_URL}/api_articulo/get_articulos_por_codigo.php?codigo=${codigo}`);
+}
+
 
   postArticulo(articulo: Articulo): Observable<any> {
     return this.http.post(`${this.BASE_URL}/api_articulo/post_articulo.php`, articulo);

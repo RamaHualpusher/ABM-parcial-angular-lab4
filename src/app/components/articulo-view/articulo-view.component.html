@@ -10,11 +10,15 @@
           <p><strong>ID Rubro:</strong> {{articulo.idrubro}}</p>
           <p *ngIf="articulo.nuevo"><strong>Nuevo:</strong> {{articulo.nuevo}}</p>
         </div>
-        <div class="card-footer">
+        <div class="card-footer d-flex justify-content-center">
           <button class="btn btn-info w-50" routerLink="/articulos">Volver</button>
         </div>
       </div>
     </div>
   </div>
 </div>
-<div *ngIf="!articulo">Loading...</div>
+<div *ngIf="!articulo" class="container d-flex justify-content-center">
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>

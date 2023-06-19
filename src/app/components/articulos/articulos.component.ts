@@ -23,6 +23,10 @@ export class ArticulosComponent implements OnInit {
   getRubros(): void {
     this.articulosService.getRubros().subscribe(rubros => {
       this.rubros = rubros;
+      if (rubros.length > 0) {
+        this.selectedRubroId = rubros[0].id;
+        this.onRubroSelected();
+      }
     });
   }
 
